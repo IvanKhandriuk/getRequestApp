@@ -12,7 +12,7 @@ import retrofit2.http.Query
 class MainViewModel(private val repositoryAuthorization: AuthorizationRepository): ViewModel() {
 
     val myResponse: MutableLiveData<Response<AuthorizationItem>> = MutableLiveData()
-    val myResponse2: MutableLiveData<Response<AuthorizationItem>> = MutableLiveData()
+    val myResponse2: MutableLiveData<Response<List<AuthorizationItem>>> = MutableLiveData()
 
     fun getAuthorizationItem(){
         viewModelScope.launch {
@@ -23,7 +23,7 @@ class MainViewModel(private val repositoryAuthorization: AuthorizationRepository
 
     fun setAuthorization(login:String,pass:String){
         viewModelScope.launch{
-            val response: Response<AuthorizationItem> = repositoryAuthorization.setAuthorization(login, pass)
+            val response = repositoryAuthorization.setAuthorization(login, pass)
             myResponse2.value=response
         }
     }

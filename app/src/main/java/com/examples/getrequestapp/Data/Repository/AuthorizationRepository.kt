@@ -6,7 +6,7 @@ import retrofit2.Response
 
 class AuthorizationRepository {
 
-    suspend fun setAuthorization(login: String,pass: String):Response<AuthorizationItem>{
+    suspend fun setAuthorization(login: String,pass: String):Response<List<AuthorizationItem>>{
         return RetrofitInstance.API.setAuthorization(login, pass)
     }
 
