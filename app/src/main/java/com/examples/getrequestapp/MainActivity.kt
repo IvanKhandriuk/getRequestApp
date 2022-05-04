@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var userNameEditText: EditText
     lateinit var passwordEditText: EditText
     lateinit var logInButton:Button
+    lateinit var logOutButton:Button
 
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -35,22 +36,24 @@ class MainActivity : AppCompatActivity() {
         val authorizationRepository = AuthorizationRepository()
         val viewModelFactory=MainViewModelFactory(authorizationRepository)
         viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+
         logInButton.setOnClickListener {
-            val myLogIn:String=userNameEditText.text.toString()
-            val myPassWord:String=userNameEditText.text.toString()
+            val myLogIn=userNameEditText.text.toString()
+            val myPassWord=passwordEditText.text.toString()
+            Log.d("name", myLogIn)
             val encodePass:String=Base64.getEncoder().encodeToString(myPassWord.toByteArray())
             viewModel.setAuthorization(myLogIn,encodePass)
 
-        viewModel.myResponse2.observe(this, Observer{ response->
-            if(response.isSuccessful){
-                response.body()?.forEach {
-                    Log.d("Response", it.code)
-                    Log.d("Response", it.result)
-                }
-            }else{
-                resultTextView.text = response.code().toString()
+        viewModel.myResponse.observe(this, Observer{ response->
+            if(response.isSuccessful) {
+                Log.d("Response", response.body()?.code.toString())
+                resultTextView.text=response.body()?.code!!
+                Log.d("Response", response.body()?.result.toString())
             }
         })
         }
+//        logOutButton.setOnClickListener {
+//            viewModel.logOut("-1259379335")}
+//-1259379335
     }
 }

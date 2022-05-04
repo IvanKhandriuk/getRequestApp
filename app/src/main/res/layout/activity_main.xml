@@ -28,6 +28,7 @@
         android:drawableLeft="@drawable/ic_baseline_person_outline_24"
         android:drawablePadding="20dp"
         android:hint="Username"
+        tools:text="usernam123"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
@@ -42,20 +43,31 @@
         android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
         android:drawablePadding="20dp"
         android:hint="Password"
+        tools:text="pass123"
         android:padding="20dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
         app:layout_constraintTop_toBottomOf="@+id/usernameEditText" />
 
     <Button
-        android:id="@+id/logInButton"
+    android:id="@+id/logInButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="30dp"
+    android:text="LOG IN"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+
+    <Button
+        android:id="@+id/logOutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:text="LOG IN"
+        android:text="LOG OUT"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEditText" />
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
 
 
     <TextView
